@@ -5,9 +5,14 @@
 #ifndef DATASTRUCTURECOURSE_SQLIST_H
 #define DATASTRUCTURECOURSE_SQLIST_H
 
+#define MaxSize 100
 typedef int ElemType;
 
-struct SqList{};
+typedef struct SqList{
+    ElemType data[MaxSize];
+    int length;
+}SqList;
+
 //    初始化
 void InitList(SqList &L);
 
@@ -30,7 +35,6 @@ int DelElem(SqList &L, int i);
 
 void DispList(SqList &L);
 
-
-void testSqList();
+void main1_1();
 
 #endif //DATASTRUCTURECOURSE_SQLIST_H

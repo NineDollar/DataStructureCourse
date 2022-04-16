@@ -117,7 +117,7 @@ int DelElem(SLinkNode *&L, int i) {
         }
     }
 }
-
+// 打印线性表
 void DispList(SLinkNode *L) {
     SLinkNode *p = L->next;
     while (p != nullptr) {
@@ -127,8 +127,8 @@ void DispList(SLinkNode *L) {
     std::cout << std::endl;
 }
 
-
-void testSLinkNode(){
+// 测试线性表
+void main1_2(){
     int i;
     ElemType e;
     SLinkNode *L;

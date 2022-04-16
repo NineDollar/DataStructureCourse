@@ -1,0 +1,10 @@
+//
+// Created by NineDollar on 2022/4/16.
+//
+
+#ifndef DATASTRUCTURECOURSE_2_REMOVEMAX_H
+#define DATASTRUCTURECOURSE_2_REMOVEMAX_H
+
+void main2_2();
+
+#endif //DATASTRUCTURECOURSE_2_REMOVEMAX_H

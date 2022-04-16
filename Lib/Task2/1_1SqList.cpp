@@ -2,7 +2,6 @@
 // Created by NineDollar on 2022/4/15.
 //
 #include <iostream>
-
 using namespace std;
 
 #define MaxSize 100
@@ -11,7 +10,7 @@ typedef int ElemType;
 typedef struct SqList {
     ElemType data[MaxSize];
     int length;
-} SqList; // 定义顺序表
+}SqList; // 定义顺序表
 
 //    初始化
 void InitList(SqList &L) {
@@ -65,6 +64,7 @@ int InsElem(SqList &L, ElemType x, int i) {
     return 1;
 }
 
+// 删除元素
 int DelElem(SqList &L, int i) {
     int j;
     if (i < 1 || i > L.length) {
@@ -78,6 +78,7 @@ int DelElem(SqList &L, int i) {
     return 1;
 }
 
+// 输出线性表
 void DispList(SqList &L) {
     for (int i = 0; i < L.length; i++) {
         cout << L.data[i] << " ";
@@ -85,27 +86,27 @@ void DispList(SqList &L) {
     cout << endl;
 }
 
-void testSqList() {
+// 测试
+void main1_1() {
     int i;
     ElemType e;
-    SqList *L;
-    L = (SqList *) malloc(sizeof(SqList));
-    InitList(*L);
-    InsElem(*L, 1, 1);
-    InsElem(*L, 2, 2);
-    InsElem(*L, 3, 3);
-    InsElem(*L, 4, 4);
-    InsElem(*L, 5, 5);
+    SqList L;
+    InitList(L);
+    InsElem(L, 1, 1);
+    InsElem(L, 2, 2);
+    InsElem(L, 3, 3);
+    InsElem(L, 4, 4);
+    InsElem(L, 5, 5);
     cout << "顺序表：" << endl;
-    DispList(*L);
-    cout << "长度: " << GetLength(*L) << endl;
+    DispList(L);
+    cout << "长度: " << GetLength(L) << endl;
     i = 3;
-    GetElem(*L, i, e);
+    GetElem(L, i, e);
     cout << i << "号元素为：" << e << endl;
     e = 1;
-    cout << e << "在第" << Locate(*L, e) << "个位置" << endl;
-    DelElem(*L, i);
+    cout << e << "在第" << Locate(L, e) << "个位置" << endl;
+    DelElem(L, i);
     cout << "删除后：" << endl;
-    DispList(*L);
-    DestroyList(*L);
+    DispList(L);
+    DestroyList(L);
 }

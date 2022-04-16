@@ -29,6 +29,6 @@ int DelElem(SLinkNode *&L, int i);
 
 void DispList(SLinkNode *L);
 
-void testSLinkNode();
+void main1_2();
 
 #endif //DATASTRUCTURECOURSE_SLINKNODE_H
