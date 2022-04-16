@@ -35,6 +35,6 @@ int DelElem(SqList &L, int i);
 
 void DispList(SqList &L);
 
-void main1_1();
+void test1_1();
 
 #endif //DATASTRUCTURECOURSE_SQLIST_H

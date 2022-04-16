@@ -8,31 +8,33 @@
 
 using namespace std;
 
+// 删除最大值
 void RemoveMax(SqList &L, ElemType max=-1) {
-    int indexMax; // 存储最大值的位置
+    int indexMax; // 最大值的位置
     int flag = -1;
     if (max == -1) {
         max = L.data[0];  // 如果没有指定最大值，则默认为第一个元素
     }
     for (int i = 0; i < L.length; i++) {
-        if (L.data[i] >= max) {
+        if (L.data[i] >= max) {     // 找到最大值
             max = L.data[i];
             indexMax = i;
             flag = 1;
         }
     }
-    if (flag == 1) {
+    if (flag == 1) { // 如果找到了最大值
         for (int i = indexMax; i < L.length; i++) {
             L.data[i] = L.data[i + 1];
         }
         L.length--;
-    }else {
+    }else { // 没有找到最大值
         return;
     }
-    RemoveMax(L, max);
+    RemoveMax(L, max);  // 递归调用
 }
 
-void main2_2() {
+// 测试
+void test2_2() {
     SqList L;
     InitList(L);
     InsElem(L, 10, 1);

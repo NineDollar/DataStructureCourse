@@ -7,6 +7,7 @@ using namespace std;
 
 typedef int ElemType;
 
+// 单链表节点
 typedef struct SLinkNode {
     ElemType data;
     struct SLinkNode *next;
@@ -128,7 +129,7 @@ void DispList(SLinkNode *L) {
 }
 
 // 测试线性表
-void main1_2(){
+void test1_2(){
     int i;
     ElemType e;
     SLinkNode *L;

@@ -7,10 +7,11 @@ using namespace std;
 #define MaxSize 100
 typedef int ElemType;
 
+// 顺序表类型定义
 typedef struct SqList {
     ElemType data[MaxSize];
     int length;
-}SqList; // 定义顺序表
+}SqList;
 
 //    初始化
 void InitList(SqList &L) {
@@ -87,7 +88,7 @@ void DispList(SqList &L) {
 }
 
 // 测试
-void main1_1() {
+void test1_1() {
     int i;
     ElemType e;
     SqList L;
