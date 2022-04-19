@@ -11,19 +11,19 @@ void Intersection(SqList &L1,SqList &L2, SqList &L3){
     int i,j,k;
     i=j=k=0;
     while(i<L1.length && j<L2.length){
-        if(L1.data[i]==L2.data[j]){
-            L3.data[k++]=L1.data[i];
+        if(L1.data[i]==L2.data[j]){ // 如果两个顺序表中的数据相等
+            L3.data[k++]=L1.data[i]; // 将相等的数据放入新的顺序表中
             i++;
             j++;
         }
-        else if(L1.data[i]<L2.data[j]){
+        else if(L1.data[i]<L2.data[j]){   // 如果L1的数据小于L2的数据
             i++;
         }
-        else{
+        else{  // 如果L1的数据大于L2的数据
             j++;
         }
     }
-    L3.length=k;
+    L3.length=k; // 更新顺序表的长度
 }
 
 void test2_6_3(){

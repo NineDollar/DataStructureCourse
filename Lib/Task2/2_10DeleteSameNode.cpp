@@ -6,20 +6,21 @@
 #include "1_2SLinkNode.h"
 using namespace std;
 
+// 删除链表中重复的节点
 void DeleteSameNode(SLinkNode *L){
     SLinkNode *p = L;
     SLinkNode *q = L;
     while(p != nullptr){
         while(q->next != nullptr){
-            if(p->data == q->next->data){
+            if(p->data == q->next->data){ // 删除重复节点
                 q->next = q->next->next;
             }
             else{
-                q = q->next;
+                q = q->next; // 指向下一个节点
             }
         }
-        p = p->next;
-        q = p;
+        p = p->next; // 指向下一个节点
+        q = p;  // 重新开始比较
     }
 }
 

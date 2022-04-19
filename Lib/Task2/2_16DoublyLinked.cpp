@@ -140,6 +140,7 @@ void DispList(DLinkNode *&L) {
     cout << endl;
 }
 
+// ∞¥’’∆µ¬ ≈≈–Ú
 void LocateNode(DLinkNode *&L, ElemType x) {
     DLinkNode *p = L->next, *q = L->next;
     while (p != nullptr) {
@@ -168,6 +169,7 @@ void LocateNode(DLinkNode *&L, ElemType x) {
     }
 }
 
+// ≤‚ ‘
 void test2_16() {
     DLinkNode *L;
     InitList(L);

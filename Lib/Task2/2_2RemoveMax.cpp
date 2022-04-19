@@ -1,6 +1,6 @@
 //
 // Created by NineDollar on 2022/4/16.
-//
+// Copyright © 2020年 NineDollar. All rights reserved.
 
 #include <cstdlib>
 #include <iostream>
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-// 删除最大值
+// 递归删除最大值
 void RemoveMax(SqList &L, ElemType max=-1) {
     int indexMax; // 最大值的位置
     int flag = -1;
@@ -30,7 +30,7 @@ void RemoveMax(SqList &L, ElemType max=-1) {
     }else { // 没有找到最大值
         return;
     }
-    RemoveMax(L, max);  // 递归调用
+    RemoveMax(L, max);  // 递归删除
 }
 
 // 测试

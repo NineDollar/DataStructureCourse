@@ -1,6 +1,6 @@
 //
 // Created by NineDollar on 2022/4/16.
-//
+// Copyright © 2020年 NineDollar. All rights reserved.
 #include <iostream>
 #include "2_6_2Complement.h"
 #include "1_1SqList.h"
@@ -12,15 +12,15 @@ void DifferenceSet(SqList &L1, SqList &L2, SqList &L3) {
     int i, j, k = 0;
     for (i = 0; i < L1.length; i++) {
         for (j = 0; j < L2.length; j++) {
-            if (L1.data[i] == L2.data[j]) {
+            if (L1.data[i] == L2.data[j]) { // 如果两个表中有相同的元素，则跳过
                 break;
             }
         }
-        if (j == L2.length) {
+        if (j == L2.length) { // 如果两个表中没有相同的元素，则将其添加到L3中
             L3.data[k++] = L1.data[i];
         }
     }
-    L3.length = k;
+    L3.length = k; // 更新L3的长度
 }
 
 // 测试
