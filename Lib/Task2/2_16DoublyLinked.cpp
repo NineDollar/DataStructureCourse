@@ -144,24 +144,24 @@ void DispList(DLinkNode *&L) {
 void LocateNode(DLinkNode *&L, ElemType x) {
     DLinkNode *p = L->next, *q = L->next;
     while (p != nullptr) {
-        if (p->data == x) {
-            p->freq += 1;
+        if (p->data == x) { // 找x元素
+            p->freq += 1; // 元素频率加1
             while (q != nullptr) {
-                if (q->freq > p->freq) {
+                if (q->freq > p->freq) { // 找到小于当前元素频率的元素
                     q = q->next;
                 } else {
                     break;
                 }
             }
-            if (q != nullptr && q != p) {
-                p->prev->next = p->next;
-                q->prev->next = p;
-                if (p->next != nullptr) {
-                    p->next->prev = p->prev;
+            if (q != nullptr && q != p) { // 将x元素插入到q元素之前
+                p->prev->next = p->next; // 将x元素的前一个元素的next指向x元素的next
+                q->prev->next = p; // 将q元素的前一个元素的next指向x元素
+                if (p->next != nullptr) { // 将x元素的next指向q元素
+                    p->next->prev = p->prev; // 将x元素的next的prev指向x元素的prev
                 }
-                p->prev = q->prev;
-                p->next = q;
-                q->prev = p;
+                p->prev = q->prev; // 将x元素的prev指向q元素的prev
+                p->next = q; // 将x元素的next指向q元素
+                q->prev = p; // 将q元素的prev指向x元素
             }
             break;
         }
@@ -179,11 +179,11 @@ void test2_16() {
     }
     DispList(L);
     cout << "After sort:" << endl;
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 3; ++i) { //访问3次
         LocateNode(L, 5);
     }
-    LocateNode(L, 1);
-    for (int i = 0; i < 8; ++i) {
+    LocateNode(L, 1); //访问1次
+    for (int i = 0; i < 8; ++i) { //访问8次
         LocateNode(L, 7);
     }
     DispList(L);
