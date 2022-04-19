@@ -5,7 +5,13 @@
 #ifndef DATASTRUCTURECOURSE_SLINKNODE_H
 #define DATASTRUCTURECOURSE_SLINKNODE_H
 
-struct SLinkNode{};
+typedef int ElemType;
+
+struct SLinkNode{
+    ElemType data;
+    struct SLinkNode *next;
+};
+
 // 初始化链表
 void InitList(SLinkNode *&L);
 

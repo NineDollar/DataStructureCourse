@@ -1,11 +1,12 @@
 //
 // Created by NineDollar on 2022/4/16.
-//
+// Copyright © 2020年 NineDollar. All rights reserved.
 #include <iostream>
 #include "2_6_3Intersection.h"
 #include "1_1SqList.h"
 using namespace std;
 
+// 交集
 void Intersection(SqList &L1,SqList &L2, SqList &L3){
     int i,j,k;
     i=j=k=0;

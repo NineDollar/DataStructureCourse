@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// 合并两个有顺序表
 void Merge(SqList &L1, SqList &L2, SqList &L3) {
     int i = 0, j = 0, k = 0;
     while (i < L1.length && j < L2.length) {

@@ -19,7 +19,7 @@ void InitList(SLinkNode *&L) {
     L->next = nullptr;
 }
 
-// 销毁线性表
+// 销毁单链表
 void DestroyList(SLinkNode *&L) {
     SLinkNode *pre = L->next, *p = pre->next;
     while (p != nullptr) {
@@ -30,7 +30,7 @@ void DestroyList(SLinkNode *&L) {
     free(pre);
 }
 
-// 求线性表长度
+// 求单链表长度
 int GetLength(SLinkNode *L) {
     int len = 0;
     SLinkNode *p = L->next;
@@ -41,7 +41,7 @@ int GetLength(SLinkNode *L) {
     return len;
 }
 
-// 求线性表中第i个元素
+// 求单链表中第i个元素
 int GetElem(SLinkNode *L, int i, ElemType &e) {
     int j = 0;
     SLinkNode *p = L;
@@ -118,7 +118,7 @@ int DelElem(SLinkNode *&L, int i) {
         }
     }
 }
-// 打印线性表
+// 打印单链表
 void DispList(SLinkNode *L) {
     SLinkNode *p = L->next;
     while (p != nullptr) {
@@ -128,7 +128,7 @@ void DispList(SLinkNode *L) {
     std::cout << std::endl;
 }
 
-// 测试线性表
+// 测试单链表
 void test1_2(){
     int i;
     ElemType e;
