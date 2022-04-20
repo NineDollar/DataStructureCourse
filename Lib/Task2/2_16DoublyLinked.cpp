@@ -19,7 +19,7 @@ typedef struct Node {
 // 初始化双向链表
 void InitList(DLinkNode *&L) {
     L = (DLinkNode *) malloc(sizeof(DLinkNode));
-    L->prev = L->next = NULL;
+    L->prev = L->next = nullptr;
 }
 
 // 销毁双向链表

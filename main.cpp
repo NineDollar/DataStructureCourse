@@ -8,6 +8,7 @@
 #include "2_13Merger.h"  //导入合并算法
 #include "2_14SeparationNumber.h" //导入分离数字算法
 #include "2_16DoublyLinked.h"  //导入双向链表排序算法
+#include "Prim.h"
 
 // 测试
 int main() {
@@ -20,6 +21,8 @@ int main() {
 //    test2_10();
 //    test2_13();
 //    test2_14();
-    test2_16();
+//    test2_16();
+
+    testPrim();
     return 0;
 }
