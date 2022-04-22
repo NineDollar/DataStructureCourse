@@ -5,8 +5,6 @@
 #ifndef DATASTRUCTURECOURSE_PRIM_H
 #define DATASTRUCTURECOURSE_PRIM_H
 
-int add(int a, int b);
-
 void testPrim();
 
 #endif //DATASTRUCTURECOURSE_PRIM_H

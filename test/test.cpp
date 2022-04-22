@@ -3,16 +3,11 @@
 //
 #include "gtest.h"
 #include "prim.h"
+#include <string>
 
-TEST(test, test){
-    EXPECT_EQ(add(1,2),4);
-}
+using namespace std;
 
-TEST(test2,test2){
-    EXPECT_EQ(1,1);
-}
-
-int main(){
-    testing::InitGoogleTest();
+int main(int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
