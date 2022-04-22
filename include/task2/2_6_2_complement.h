@@ -1,0 +1,10 @@
+//
+// Created by NineDollar on 2022/4/16.
+//
+
+#ifndef DATASTRUCTURECOURSE_2_6_2_COMPLEMENT_H
+#define DATASTRUCTURECOURSE_2_6_2_COMPLEMENT_H
+
+void test2_6_2();
+
+#endif //DATASTRUCTURECOURSE_2_6_2_COMPLEMENT_H
