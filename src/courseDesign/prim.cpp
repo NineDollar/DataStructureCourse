@@ -4,9 +4,13 @@
 // Prim普里姆算法求最小生成树
 
 #include <iomanip>
+#include <fstream>
 #include "prim.h"
 #include "gtest.h"
+#include <cstdlib>
 #include <iostream>
+
+using namespace std;
 
 using namespace std;
 
@@ -15,7 +19,7 @@ using namespace std;
  * @param cost
  * @return
  */
-int create_cost(int **cost) {
+int create_cost(int **cost, int file_data[2][2][2]) {
     int vex_num, arc_num, v1, v2, w;
     cout << "请输入顶点数和边数: ";
     cin >> vex_num >> arc_num;
@@ -33,6 +37,11 @@ int create_cost(int **cost) {
     return vex_num;
 }
 
+/**
+ * 打印邻接矩阵
+ * @param cost
+ * @param vex_num
+ */
 void print_matrix(int **cost, int vex_num) {
     for (int i = 0; i < vex_num * 13; ++i) {
         cout << "-";
@@ -56,7 +65,7 @@ void print_matrix(int **cost, int vex_num) {
         for (int j = 1; j <= vex_num; ++j) {
             cout << "| " << setw(7) << right << cost[i][j];
         }
-        cout<<"|";
+        cout << "|";
         cout << endl;
     }
     for (int i = 0; i < vex_num * 13; ++i) {
@@ -64,8 +73,29 @@ void print_matrix(int **cost, int vex_num) {
     }
 }
 
-TEST(prim, test){
+void Prim(int (*cost)[2][2]) {
+    cout << cost[0][0];
+}
 
+TEST(Prim, create_cost) {
+    fstream io_file;
+    char buffer[1024];
+    string file_path = string(__FILE__);
+    string file_dir = file_path.substr(0, file_path.find_last_of('/'));
+    io_file.open(file_dir + "/prim.txt");
+    if (!io_file.is_open()) {
+        FAIL() << "打开文件失败";
+    }
+    while (io_file.getline(buffer, 1024)) {
+        int i = strtol(buffer, nullptr, 10);
+        cout << i << endl;
+    }
+
+    io_file.close();
+
+//    int p[][2] = {{1, 2},
+//                  {3, 4}};
+//    Prim(p);
 }
 
 void testPrim() {

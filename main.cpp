@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2015 NineDollar. All rights reserved.
+ */
 #include "1_1_sqList.h"  //导入顺序表基本操作
 #include "1_2_slinkNode.h"  //导入单链表基本操作
 #include "2_2_removeMax.h"  //导入删除最大值算法
