@@ -32,7 +32,7 @@ add_executable(prim ${DIR_SRCS_PRIM})
 
 # 链接库
 target_link_libraries(main gtest gtest_main task2 courseDesign)
-target_link_libraries(my_test gtest gtest_main)
+target_link_libraries(my_test gtest gtest_main task2)
 target_link_libraries(prim gtest gtest_main)
 
 # 测试

@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <fstream>
 #include "prim.h"
-#include "gtest.h"
+#include "../../googletest/include/gtest/gtest.h"
 #include <cstdlib>
 #include <iostream>
 
