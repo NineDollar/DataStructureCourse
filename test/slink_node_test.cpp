@@ -2,7 +2,6 @@
 // Created by NineDollar on 2022/4/26.
 //
 
-
 #include "../googletest/include/gtest/gtest.h"
 #include "../include/task2/1_2_slinkNode.h"
 #include <iostream>

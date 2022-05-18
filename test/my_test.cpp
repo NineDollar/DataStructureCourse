@@ -8,13 +8,19 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/cfg/env.h"  // support for loading levels from the environment variable
 #include "spdlog/fmt/ostr.h" // support for user defined types
+#include <boost/lambda/lambda.hpp>
 
 using namespace std;
 using namespace spdlog;
 
+#include "boost/format.hpp"
+
 
 TEST(test, test) {
-
+    int a[] = {1, 2, 3, 4, 5};
+    std::for_each(a, a + 5, [](int i) {
+        std::cout << i << std::endl;
+    });
 }
 
 int main(int argc, char **argv) {
