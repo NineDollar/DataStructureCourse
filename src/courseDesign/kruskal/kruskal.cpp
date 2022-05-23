@@ -4,17 +4,14 @@
 /**
  * p: Kruskal克鲁斯卡尔求最小生成树,稠密图
  */
-#include <iomanip>
 #include <fstream>
 #include <iostream>
 #include "boost/tokenizer.hpp"
 #include "boost/typeof/typeof.hpp"
 #include "boost/lexical_cast.hpp"
-#include "boost/format.hpp"
 
 using namespace std;
 using namespace boost;
-using boost::format;  // 使用format
 
 typedef struct edges {
   int bv, ev, w;
@@ -91,7 +88,7 @@ void file_test() {
   fstream io_file;
   char buffer[1024];
   string file_path = string(__FILE__);
-  string file_dir = file_path.substr(0, file_path.find_last_of('/'));
+  string file_dir = file_path.substr(0, file_path.find_last_of('\\'));
   io_file.open(file_dir + "/kruskal.txt");
   if (!io_file.is_open()) {
     cout << "打开文件失败";
@@ -121,7 +118,7 @@ void file_test() {
 }
 
 int main() {
-  int vex_num, arc_num;
+ /* int vex_num, arc_num;
   cout << "Kruskal克鲁斯卡尔求最小生成树" << endl;
   EDGES *edgeset;
 
@@ -133,9 +130,9 @@ int main() {
 
   creat_edgeset(edgeset, arc_num);
   sort(edgeset, arc_num);
-  kruskal(edgeset, arc_num, vex_num);
+  kruskal(edgeset, arc_num, vex_num);*/
 
-  // file_test();
+  file_test();
   return 0;
 }
 

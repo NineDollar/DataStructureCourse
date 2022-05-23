@@ -1,7 +1,7 @@
 //
 // Created by NineDollar on 2022/4/19.
-// Copyright (c) 2020å¹´ NineDollar. All rights reserved.
-// Primæ™®é‡Œå§†ç®—æ³•æ±‚æœ€å°ç”Ÿæˆæ ‘ï¼Œé€‚ç”¨äº
+// Copyright (c) 2020Äê NineDollar. All rights reserved.
+// PrimÆÕÀïÄ·Ëã·¨Çó×îĞ¡Éú³ÉÊ÷£¬ÊÊÓÃÓÚ
 
 #include <iomanip>
 #include <fstream>
@@ -13,11 +13,11 @@
 
 using namespace std;
 using namespace boost;
-using boost::format;  // ä½¿ç”¨format
+using boost::format;  // Ê¹ÓÃformat
 
 /**
- * åˆ›å»ºé‚»æ¥çŸ©é˜µ,å¹¶æ¯ä¸ªé¡¶ç‚¹èµ‹å€¼ä¸ºæ— ç©·å¤§,ç„¶åè¾“å…¥æ¯ä¸ªé¡¶ç‚¹çš„æƒå€¼
- * @param cost äºŒç»´æ•°ç»„
+ * ´´½¨ÁÚ½Ó¾ØÕó,²¢Ã¿¸ö¶¥µã¸³ÖµÎªÎŞÇî´ó,È»ºóÊäÈëÃ¿¸ö¶¥µãµÄÈ¨Öµ
+ * @param cost ¶şÎ¬Êı×é
  * @return int
  */
 void create_cost(int **cost, int vex_num, int arc_num) {
@@ -35,7 +35,7 @@ void create_cost(int **cost, int vex_num, int arc_num) {
   }
 }
 /**
- * æ‰“å°é‚»æ¥çŸ©é˜µ
+ * ´òÓ¡ÁÚ½Ó¾ØÕó
  * @param cost
  * @param vex_num
  */
@@ -76,7 +76,7 @@ void print_cost(int **cost, int vex_num) {
 }
 
 /**
- * æ™®é‡Œå§†æ±‚æœ€å°ç”Ÿæˆæ ‘
+ * ÆÕÀïÄ·Çó×îĞ¡Éú³ÉÊ÷
  * @param cost
  * @param vex_num
  */
@@ -114,19 +114,19 @@ void prim(int **cost, int vex_num) {
 }
 
 void file_test() {
-  int line_var[10], *p, vex_num;
+  int line_var[10], *p, vex_num=0;
   int **cost = nullptr;
   fstream io_file;
   char buffer[1024];
   string file_path = string(__FILE__);
-  string file_dir = file_path.substr(0, file_path.find_last_of('/'));
+  string file_dir = file_path.substr(0, file_path.find_last_of('\\'));
   io_file.open(file_dir + "/prim.txt");
   if (!io_file.is_open()) {
-    cout << "æ‰“å¼€æ–‡ä»¶å¤±è´¥";
+    cout << "´ò¿ªÎÄ¼şÊ§°Ü";
   }
   while (io_file.getline(buffer, 1024)) {
     string line = string(buffer);
-    tokenizer<> tok(line);  // ä½¿ç”¨é»˜è®¤å‚æ•°ï¼Œé‡‡ç”¨ç©ºæ ¼æˆ–è€…æ ‡ç‚¹ç¬¦å·åˆ†è¯
+    tokenizer<> tok(line);  // Ê¹ÓÃÄ¬ÈÏ²ÎÊı£¬²ÉÓÃ¿Õ¸ñ»òÕß±êµã·ûºÅ·Ö´Ê
     p = line_var;
     for (BOOST_AUTO(it, tok.begin()); it != tok.end(); ++it) {
       *p++ = lexical_cast<int>(string(*it));
@@ -156,18 +156,19 @@ void file_test() {
 }
 
 int main() {
-  int vex_num, arc_num;
+  /*int vex_num, arc_num;
   int **cost = nullptr;
-  cout << "è¯·è¾“å…¥é¡¶ç‚¹æ•°å’Œè¾¹æ•°: ";
+  cout << "ÇëÊäÈë¶¥µãÊıºÍ±ßÊı: ";
   cin >> vex_num >> arc_num;
-  cout << "primç®—æ³•æ±‚æœ€å°ç”Ÿæˆæ ‘" << endl;
+  cout << "primËã·¨Çó×îĞ¡Éú³ÉÊ÷" << endl;
   cost = new int *[vex_num+1];
   for (int i = 0; i < vex_num+1; ++i) {
     cost[i] = new int[vex_num+1];
   }
   create_cost(cost, vex_num, arc_num);
   print_cost(cost, vex_num);
-  prim(cost, vex_num);
-  // file_test();
+  prim(cost, vex_num);*/
+
+  file_test();
   return 0;
 }

@@ -23,7 +23,7 @@ int get_np(color_array &temp_U, color_array &temp_R);
 int get_nc(color_array &temp_U, color_array &temp_R);
 int get_rand(int size);
 
-int test() {
+int main() {
   colors U[colors_max];
   init(U);
   play(U);

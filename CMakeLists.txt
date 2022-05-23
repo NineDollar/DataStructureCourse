@@ -16,6 +16,7 @@ aux_source_directory(. DIR_SRCS)
 aux_source_directory(${CMAKE_SOURCE_DIR}/src/courseDesign/prim DIR_SRCS_PRIM)
 aux_source_directory(${CMAKE_SOURCE_DIR}/test/ DIR_SRCS_TEST)
 aux_source_directory(${CMAKE_SOURCE_DIR}/src/courseDesign/kruskal DIR_SRCS_KRUSKAL)
+aux_source_directory(${CMAKE_SOURCE_DIR}/src/courseDesign/color_play DIR_SRCS_COLOR_PLAY)
 
 # 子文件夹
 add_subdirectory(src/task2/)
@@ -35,6 +36,7 @@ add_executable(main ${DIR_SRCS})
 add_executable(my_test ${DIR_SRCS_TEST})
 add_executable(prim ${DIR_SRCS_PRIM})
 add_executable(kruskal ${DIR_SRCS_KRUSKAL})
+add_executable(color_play ${DIR_SRCS_COLOR_PLAY})
 
 # 链接库
 target_link_libraries(main gtest gtest_main task2)

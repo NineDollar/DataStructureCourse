@@ -8,18 +8,15 @@ using namespace std;
 #define ARRIVAL_TIME 15
 #define BANK_PROCESSING_TIME 120
 typedef int QElemType;
+
 typedef struct QNode {
-  //到达时间
   QElemType arrival_time;
-  //办理时间
   QElemType processing_time;
   struct QNode *next;
 } QNode, *QueuePtr;
 
 typedef struct {
-  //头指针
   QueuePtr front;
-  //尾指针
   QueuePtr rear;
 } LinkQueue;
 
