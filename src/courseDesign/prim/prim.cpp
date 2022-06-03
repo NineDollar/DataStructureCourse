@@ -6,14 +6,15 @@
 #include <iomanip>
 #include <fstream>
 #include <iostream>
-#include "boost/tokenizer.hpp"
-#include "boost/typeof/typeof.hpp"
-#include "boost/lexical_cast.hpp"
+#include <boost/tokenizer.hpp>
+#include <boost/typeof/typeof.hpp>
+#include <boost/lexical_cast.hpp>
 #include <boost/format.hpp>
+#include "prim.h"
 
 using namespace std;
 using namespace boost;
-using boost::format;  // 使用format
+using boost::format;
 
 /**
  * 创建邻接矩阵,并每个顶点赋值为无穷大,然后输入每个顶点的权值
@@ -75,6 +76,19 @@ void print_cost(int **cost, int vex_num) {
   cout << endl;
 }
 
+int out(string text) {
+  fstream file;
+  string file_path = string(__FILE__);
+  string file_dir = file_path.substr(0, file_path.find_last_of('\\'));
+  file.open(file_dir + "/out.txt", ios::out | ios::app);
+  if (!file.is_open()) {
+    return 1;
+  }
+  file << text;
+  file.close();
+  return 0;
+}
+
 /**
  * 普里姆求最小生成树
  * @param cost
@@ -82,7 +96,6 @@ void print_cost(int **cost, int vex_num) {
  */
 void prim(int **cost, int vex_num) {
   int low_cost[vex_num + 1], close_ver[vex_num + 1];
-  int k, min;
   if (cost == nullptr) {
     return;
   }
@@ -92,6 +105,7 @@ void prim(int **cost, int vex_num) {
   }
   close_ver[1] = -1;
   for (int i = 2; i <= vex_num; ++i) {
+    int k, min;
     min = 32767;
     k = 0;
     for (int j = 1; j <= vex_num; ++j) {
@@ -101,7 +115,10 @@ void prim(int **cost, int vex_num) {
       }
     }
     if (k) {
-      cout << format("(%1%,%2%)%3%\n") % close_ver[k] % k % low_cost[k];
+      format text = format("(%1%,%2%) %3%\n") % close_ver[k] % k % low_cost[k];
+      string str = text.str();
+      cout << str;
+      out(str);
       close_ver[k] = -1;
       for (int j = 2; j <= vex_num; ++j) {
         if (close_ver[j] != -1 && cost[k][j] < low_cost[j]) {
@@ -113,20 +130,24 @@ void prim(int **cost, int vex_num) {
   }
 }
 
-void file_test() {
-  int line_var[10], *p, vex_num=0;
-  int **cost = nullptr;
-  fstream io_file;
-  char buffer[1024];
+int get_file(fstream &file) {
   string file_path = string(__FILE__);
   string file_dir = file_path.substr(0, file_path.find_last_of('\\'));
-  io_file.open(file_dir + "/prim.txt");
-  if (!io_file.is_open()) {
+  file.open(file_dir + "/prim.txt", ios::in);
+  if (!file.is_open()) {
     cout << "打开文件失败";
+    return 1;
   }
-  while (io_file.getline(buffer, 1024)) {
+  return 0;
+}
+
+int **create_cost_file(fstream &file, int &edge) {
+  int **cost = nullptr;
+  char buffer[1024];
+  while (file.getline(buffer, 1024)) {
+    int line_var[10], *p;
     string line = string(buffer);
-    tokenizer<> tok(line);  // 使用默认参数，采用空格或者标点符号分词
+    tokenizer<> tok(line);
     p = line_var;
     for (BOOST_AUTO(it, tok.begin()); it != tok.end(); ++it) {
       *p++ = lexical_cast<int>(string(*it));
@@ -141,22 +162,28 @@ void file_test() {
           cost[i][j] = 32767;
         }
       }
-      vex_num = line_var[0];
+      edge = line_var[0];
     } else {
       cost[line_var[0]][line_var[1]] = line_var[2];
       cost[line_var[1]][line_var[0]] = line_var[2];
     }
   }
-
-  print_cost(cost, vex_num);
-
-  prim(cost, vex_num);
-
-  io_file.close();
+  file.close();
+  return cost;
 }
 
 int main() {
-  /*int vex_num, arc_num;
+  int **cost, vex_num;
+  fstream file;
+  get_file(file);
+  cost = create_cost_file(file, vex_num);
+  print_cost(cost, vex_num);
+  prim(cost, vex_num);
+  free(cost);
+  return 0;
+}
+
+/*int vex_num, arc_num;
   int **cost = nullptr;
   cout << "请输入顶点数和边数: ";
   cin >> vex_num >> arc_num;
@@ -168,7 +195,3 @@ int main() {
   create_cost(cost, vex_num, arc_num);
   print_cost(cost, vex_num);
   prim(cost, vex_num);*/
-
-  file_test();
-  return 0;
-}

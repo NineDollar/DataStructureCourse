@@ -2,25 +2,28 @@
 // Created by Nine_Dollar on 2021/5/1.
 //
 /**
- * p: Kruskalå…‹é²æ–¯å¡å°”æ±‚æœ€å°ç”Ÿæˆæ ‘,ç¨ å¯†å›¾
+ * p: Kruskal¿ËÂ³Ë¹¿¨¶ûÇó×îĞ¡Éú³ÉÊ÷,³íÃÜÍ¼
  */
 #include <fstream>
 #include <iostream>
-#include "boost/tokenizer.hpp"
-#include "boost/typeof/typeof.hpp"
-#include "boost/lexical_cast.hpp"
+#include <boost/tokenizer.hpp>
+#include <boost/typeof/typeof.hpp>
+#include <boost/lexical_cast.hpp>
+#include "kruskal.h"
+#include "boost/format.hpp"
 
 using namespace std;
 using namespace boost;
+using boost::format;
 
-typedef struct edges {
+typedef struct EDGES {
   int bv, ev, w;
 } EDGES;
 
 void creat_edgeset(EDGES *edgeset, int arc_num) {
   int i;
   for (i = 1; i <= arc_num; i++) {
-    cout << "bv,ev,w=";  //åˆ†åˆ«å¯¹åº”èµ·ç‚¹,ç»ˆç‚¹,æƒå€¼
+    cout << "bv,ev,w=";
     cin >> edgeset[i].bv >> edgeset[i].ev >> edgeset[i].w;
   }
 }
@@ -47,11 +50,24 @@ int seeks(const int set[], int v) {
   return i;
 }
 
+int out(string str) {
+  fstream file;
+  string file_path = string(__FILE__);
+  string file_dir = file_path.substr(0, file_path.find_last_of('\\'));
+  file.open(file_dir + "/out.txt", ios::out | ios::app);
+  if (!file.is_open()) {
+    return 1;
+  }
+  file << str;
+  file.close();
+  return 0;
+}
+
 void kruskal(EDGES *edgeset, int arc_num, int vex_num) {
   int set[vex_num + 1], v1, v2;
   int i;
-  cout << "kruskalç®—æ³•æ„é€ çš„æœ€å°ç”Ÿæˆæ ‘" << endl;
-  cout << "èµ·ç‚¹-->ç»ˆç‚¹   æƒå€¼" << endl;
+  cout << "kruskalËã·¨¹¹ÔìµÄ×îĞ¡Éú³ÉÊ÷" << endl;
+  cout << "Æğµã-->ÖÕµã   È¨Öµ" << endl;
   for (i = 1; i <= vex_num; i++) {
     set[i] = 0;
   }
@@ -60,7 +76,10 @@ void kruskal(EDGES *edgeset, int arc_num, int vex_num) {
     v1 = seeks(set, edgeset[i].bv);
     v2 = seeks(set, edgeset[i].ev);
     if (v1 != v2) {
-      cout << " " << edgeset[i].bv << "---->" << edgeset[i].ev << "     " << edgeset[i].w << endl;
+      format text = format(" %1%---->%2%     %3%\n") % edgeset[i].bv % edgeset[i].ev % edgeset[i].w;
+      string str = text.str();
+      cout << str;
+      out(str);
       set[v1] = v2;
     }
     i++;
@@ -68,33 +87,37 @@ void kruskal(EDGES *edgeset, int arc_num, int vex_num) {
 }
 
 /**
- * æ‰“å°é‚»æ¥çŸ©é˜µ
+ * ´òÓ¡ÁÚ½Ó¾ØÕó
  * @param cost
  * @param vex_num
  */
-void print_edges(EDGES *edges, int arc_num) {
-  cout << "èµ·ç‚¹-->ç»ˆç‚¹   æƒå€¼" << endl;
+void print_edges(EDGES *edgeset, int arc_num) {
+  cout << "Æğµã-->ÖÕµã   È¨Öµ" << endl;
   for (int i = 1; i <= arc_num; ++i) {
-    cout << " " << edges[i].bv << "---->" << edges[i].ev << "     " << edges[i].w << endl;
+    format text = format(" %1%---->%2%     %3%\n") % edgeset[i].bv % edgeset[i].ev % edgeset[i].w;
+    cout << text.str();
   }
 }
 
-void file_test() {
-  int line_var[10] = {0}, *p;
-  int arc_num = 1;
-  int e;
-  int vex_num;
-  EDGES *edgeset = nullptr;
-  fstream io_file;
-  char buffer[1024];
+int get_file(fstream &file) {
   string file_path = string(__FILE__);
   string file_dir = file_path.substr(0, file_path.find_last_of('\\'));
-  io_file.open(file_dir + "/kruskal.txt");
-  if (!io_file.is_open()) {
-    cout << "æ‰“å¼€æ–‡ä»¶å¤±è´¥";
-    return;
+  file.open(file_dir + "/kruskal.txt");
+  if (!file.is_open()) {
+    cout << "´ò¿ªÎÄ¼şÊ§°Ü";
+    return 1;
   }
-  while (io_file.getline(buffer, 1024)) {
+  return 0;
+}
+
+EDGES *creat_edgeset_file(fstream &file, int &arc_num, int &vex_num) {
+  EDGES *edgeset = nullptr;
+  char buffer[1024];
+  if (!file.is_open()) {
+    return nullptr;
+  }
+  while (file.getline(buffer, 1024)) {
+    int line_var[10] = {0}, *p;
     string line = string(buffer);
     tokenizer<> tok(line);
     p = line_var;
@@ -112,27 +135,34 @@ void file_test() {
     }
   }
   --arc_num;
-  print_edges(edgeset, arc_num);
-  sort(edgeset, arc_num);
-  kruskal(edgeset, arc_num, vex_num);
+  file.close();
+  return edgeset;
 }
 
 int main() {
- /* int vex_num, arc_num;
-  cout << "Kruskalå…‹é²æ–¯å¡å°”æ±‚æœ€å°ç”Ÿæˆæ ‘" << endl;
+  int vex_num, arc_num = 1;
   EDGES *edgeset;
-
-  cout << "è¯·è¾“å…¥æ— å‘å›¾çš„é¡¶ç‚¹æ•°:";
-  cin >> vex_num;
-  cout << "è¾“å…¥æ— å‘ç½‘çš„è¾¹æ•°:";
-  cin >> arc_num;
-  edgeset = new EDGES[arc_num + 1];
-
-  creat_edgeset(edgeset, arc_num);
+  fstream file;
+  get_file(file);
+  edgeset = creat_edgeset_file(file, arc_num, vex_num);
+  print_edges(edgeset, arc_num);
   sort(edgeset, arc_num);
-  kruskal(edgeset, arc_num, vex_num);*/
-
-  file_test();
+  kruskal(edgeset, arc_num, vex_num);
   return 0;
 }
+
+
+/* int vex_num, arc_num;
+   cout << "Kruskal¿ËÂ³Ë¹¿¨¶ûÇó×îĞ¡Éú³ÉÊ÷" << endl;
+   EDGES *edgeset;
+
+   cout << "ÇëÊäÈëÎŞÏòÍ¼µÄ¶¥µãÊı:";
+   cin >> vex_num;
+   cout << "ÊäÈëÎŞÏòÍøµÄ±ßÊı:";
+   cin >> arc_num;
+   edgeset = new EDGES[arc_num + 1];
+
+   creat_edgeset(edgeset, arc_num);
+   sort(edgeset, arc_num);
+   kruskal(edgeset, arc_num, vex_num);*/
 

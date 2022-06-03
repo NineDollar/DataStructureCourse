@@ -17,6 +17,7 @@ aux_source_directory(${CMAKE_SOURCE_DIR}/src/courseDesign/prim DIR_SRCS_PRIM)
 aux_source_directory(${CMAKE_SOURCE_DIR}/test/ DIR_SRCS_TEST)
 aux_source_directory(${CMAKE_SOURCE_DIR}/src/courseDesign/kruskal DIR_SRCS_KRUSKAL)
 aux_source_directory(${CMAKE_SOURCE_DIR}/src/courseDesign/color_play DIR_SRCS_COLOR_PLAY)
+aux_source_directory(${CMAKE_SOURCE_DIR}/src/courseDesign/park DIR_SRCS_PARK)
 
 # 子文件夹
 add_subdirectory(src/task2/)
@@ -27,7 +28,8 @@ add_subdirectory(test/)
 include_directories(boost/)
 include_directories(spdlog/)
 include_directories(include/task2/)
-include_directories(include/courseDesign/)
+include_directories(include/courseDesign/prim)
+include_directories(include/courseDesign/kruskal)
 include_directories(googletest/)
 set(GTEST_LIB gtest gtest_main)
 
@@ -37,6 +39,7 @@ add_executable(my_test ${DIR_SRCS_TEST})
 add_executable(prim ${DIR_SRCS_PRIM})
 add_executable(kruskal ${DIR_SRCS_KRUSKAL})
 add_executable(color_play ${DIR_SRCS_COLOR_PLAY})
+add_executable(park ${DIR_SRCS_PARK})
 
 # 链接库
 target_link_libraries(main gtest gtest_main task2)

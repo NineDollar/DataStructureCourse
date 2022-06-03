@@ -55,6 +55,7 @@ int main() {
     wait_time = 0;
     bank_time = 0;
   }
+  destroy_queue(&q);
   return 0;
 }
 
