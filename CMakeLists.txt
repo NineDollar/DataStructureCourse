@@ -47,3 +47,24 @@ target_link_libraries(my_test gtest gtest_main task2)
 
 # 测试
 add_test(NAME my_test COMMAND my_test)
+add_executable(exp2-1 src/book/task2/exp2-1.cpp)
+add_executable(exp2-2 src/book/task2/exp2-2.cpp)
+add_executable(experiment2-2 src/book/task5/experiment2-2.cpp)
+add_executable(experiment2-6 src/book/task8/experiment2-6.cpp)
+add_executable(experiment2-10 src/book/task8/experiment2-10.cpp)
+add_executable(experiment2-13 src/book/task2/experiment2-13.cpp)
+add_executable(experiment2-14 src/book/task2/experiment2-14.cpp)
+add_executable(experiment2-16 src/book/task2/experiment2-16.cpp)
+add_executable(experiment2-1 src/book/task3/experiment2-1.cpp)
+add_executable(experiment2-3 src/book/task8/experiment2-3.cpp)
+
+add_executable(experiment2-9 src/book/task6/experiment2-9.cpp)
+add_executable(experiment2-15 src/book/task6/experiment2-15.cpp)
+add_executable(experiment1-2 src/book/task8/experiment1-2.cpp)
+add_executable(experiment1-5 src/book/task7/experiment1-5.cpp)
+
+add_executable(experiment1-4 src/book/task9/experiment1-4.cpp)
+
+add_executable(experiment2-8 src/book/task8/experiment2-8.cpp)
+
+add_executable(experiment1-7 src/book/task9/experiment1-7.cpp)
